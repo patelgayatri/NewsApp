@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.techand.news.ui.home.HomeFragment"
+        android:label="@string/menu_latest"
+        tools:layout="@layout/activity_main">
+        <argument
+            android:name="name"
+            app:argType="string"
+            android:defaultValue="Latest"/>
+    </fragment>
+
+    <action
+        android:id="@+id/nav_world"
+        app:destination="@id/nav_home">
+        <argument
+            android:name="name"
+            android:defaultValue="world"
+            app:argType="string" />
+    </action>
+    <action
+        android:id="@+id/nav_science"
+        app:destination="@id/nav_home">
+        <argument
+            android:name="name"
+            android:defaultValue="science"
+            app:argType="string" />
+    </action>
+    <action
+        android:id="@+id/nav_sports"
+        app:destination="@id/nav_home">
+        <argument
+            android:name="name"
+            android:defaultValue="sports"
+            app:argType="string" />
+    </action>
+    <action
+        android:id="@+id/nav_environment"
+        app:destination="@id/nav_home">
+        <argument
+            android:name="name"
+            android:defaultValue="Environment"
+            app:argType="string" />
+    </action>
+    <action
+        android:id="@+id/nav_business"
+        app:destination="@id/nav_home">
+        <argument
+            android:name="name"
+            android:defaultValue="Business"
+            app:argType="string" />
+    </action>
+    <action
+        android:id="@+id/nav_fashion"
+        app:destination="@id/nav_home">
+        <argument
+            android:name="name"
+            android:defaultValue="Fashion"
+            app:argType="string" />
+    </action>
+
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.techand.news.ui.about.About"
+        android:label="@string/menu_about"
+        tools:layout="@layout/about_fragment" />
+
+</navigation>
