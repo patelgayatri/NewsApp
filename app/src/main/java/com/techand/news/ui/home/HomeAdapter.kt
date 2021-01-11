@@ -19,6 +19,7 @@ class HomeAdapter(private val users: ArrayList<Article>) : RecyclerView.Adapter<
         fun bind(user: Article) {
             itemView.apply {
                 textViewTitle.text = user.title
+                date.text = user.publishedAt
                 textViewDescription.text = user.description
 
                 val options: RequestOptions = RequestOptions()

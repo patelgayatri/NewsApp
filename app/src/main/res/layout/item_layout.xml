@@ -5,39 +5,54 @@
     android:id="@+id/workListCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="5dp"
     android:orientation="vertical"
     app:cardCornerRadius="10dp"
-    android:layout_margin="5dp"
     app:cardPreventCornerOverlap="false"
-    app:cardUseCompatPadding="true"
-    app:contentPadding="10dp">
+    app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageViewAvatar"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:scaleType="fitXY"
-            android:src="@mipmap/ic_launcher"
-            tools:ignore="contentDescription" />
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageViewAvatar"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_launcher"
+                tools:ignore="contentDescription" />
+            <TextView
+                android:padding="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#C80492D2"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:id="@+id/date"/>
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/textViewTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:fontFamily="sans-serif-condensed"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textViewDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"/>
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="3dp"
+            android:fontFamily="sans-serif-condensed" />
 
     </LinearLayout>
 
