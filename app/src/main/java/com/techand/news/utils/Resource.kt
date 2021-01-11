@@ -1,11 +1,14 @@
 package com.techand.news.utils
 
-import com.techand.news.utils.Status.ERROR
-import com.techand.news.utils.Status.LOADING
-import com.techand.news.utils.Status.SUCCESS
-
 
 data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
+
+    enum class Status {
+        SUCCESS,
+        ERROR,
+        LOADING
+    }
+
     companion object {
         fun <T> success(data: T): Resource<T> {
             return Resource(Status.SUCCESS, data, null)

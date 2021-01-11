@@ -4,20 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.techand.news.R
-import com.techand.news.data.remote.ApiHelper
-import com.techand.news.data.remote.RetrofitBuilder
 import com.techand.news.data.model.Article
-import com.techand.news.ui.base.ViewModelFactory
-import com.techand.news.utils.Status
+import com.techand.news.utils.Resource
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel: HomeViewModel by viewModels()
     private lateinit var adapter: HomeAdapter
 
     override fun onCreateView(
@@ -31,18 +32,10 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        setupViewModel()
         setupUI()
         setupObservers()
     }
 
-    private fun setupViewModel() {
-        viewModel = ViewModelProviders.of(
-            this,
-            ViewModelFactory(ApiHelper(RetrofitBuilder.apiService))
-        ).get(HomeViewModel::class.java)
-
-    }
 
     private fun setupUI() {
         recyclerView.layoutManager = LinearLayoutManager(this.requireActivity())
@@ -52,26 +45,22 @@ class HomeFragment : Fragment() {
 
     private fun setupObservers() {
         val newsKeyword: String = arguments?.getString("name").toString()
-        viewModel.getNews(newsKeyword).observe(viewLifecycleOwner, {
-            it?.let { resource ->
-                when (resource.status) {
-                    Status.SUCCESS -> {
-                        recyclerView.visibility = View.VISIBLE
+        viewModel.getNews(newsKeyword).observe(viewLifecycleOwner, Observer {
+            when (it.status) {
+                Resource.Status.SUCCESS -> {
+                    recyclerView.visibility = View.VISIBLE
                         progressBar.visibility = View.GONE
-                        resource.data?.let { users ->
+                        it.data?.let { users ->
                             retrieveList(users)
                         }
-                    }
-                    Status.ERROR -> {
-                        recyclerView.visibility = View.VISIBLE
-                        progressBar.visibility = View.GONE
-                    }
-                    Status.LOADING -> {
-                        progressBar.visibility = View.VISIBLE
-                        recyclerView.visibility = View.GONE
-                    }
                 }
+                Resource.Status.ERROR ->
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+
+                Resource.Status.LOADING ->
+                    progressBar.visibility = View.VISIBLE
             }
+
         })
     }
 

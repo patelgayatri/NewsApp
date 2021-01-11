@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         android:background="#E5E9FC"
         android:divider="@null"
+        tools:listitem="@layout/item_layout"
         android:dividerHeight="0dp"
         android:visibility="gone" />
 

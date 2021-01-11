@@ -29,14 +29,15 @@
             android:id="@+id/textViewTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-black"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
             />
 
         <TextView
             android:id="@+id/textViewDescription"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"/>
 
     </LinearLayout>
 

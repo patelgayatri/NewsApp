@@ -16,9 +16,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
 import com.techand.news.R
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_news.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-
+@AndroidEntryPoint
 class NewsActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -32,7 +33,6 @@ class NewsActivity : AppCompatActivity() {
         setToolBar()
         setFab()
         setDrawer()
-
     }
 
     private fun setToolBar() {
