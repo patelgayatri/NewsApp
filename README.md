@@ -1,6 +1,6 @@
 # NewsApp
 
-displays new from NewsApi
+displays news from NewsApi
 * developed using kotlin 
 * Navigation Graph 
 * Material Design - RecyclerView, Cardview
